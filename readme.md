@@ -16,7 +16,7 @@ CheckThat = require 'CheckThat'
 { exists, notEmpty, checkThat } = CheckThat
 
 importantFunc: (name) ->
-    checkThat('Name must exist and be non-empty', name, exists, nonEmpty)
+    checkThat('Name must exist and be non-empty', name, exists, notEmpty)
     ...
 ```
 
