@@ -1,2 +1,2 @@
 
-module.exports = require("lib/CheckThat")
+module.exports = require("./lib/CheckThat")
