@@ -1,8 +1,8 @@
 before_install:
-  - "npm install"
+  - npm install
 
 before_script:
-  - "coffee --compile --output lib/ src/*.coffee"
+  - coffee --compile --output lib/ src/*.coffee
 
 language: node_js
 node_js:
