@@ -1,6 +1,6 @@
 {
   "name": "CheckThat",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "A small library that provides Google Guava precondition-like argument checks.",
   "main": "index.js",
   "scripts": {
