@@ -1,14 +1,14 @@
+language: node_js
+node_js:
+  - 0.10
+ branches:
+  only:
+    - master
+
 before_install:
   - npm install
 
 before_script:
   - coffee --compile --output lib/ src/*.coffee
 
-language: node_js
-node_js:
-  - "0.10"
-
- branches:
-  only:
-    - master
 
