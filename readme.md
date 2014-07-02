@@ -11,7 +11,7 @@ interface.
 
 ```coffee
 
-CheckThat = require 'CheckThat'
+CheckThat = require('CheckThat')()
 
 { exists, notEmpty, checkThat } = CheckThat
 
