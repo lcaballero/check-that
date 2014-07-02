@@ -1,3 +1,4 @@
 #!/bin/bash
 
+echo "Running mocha tests"
 mocha --compilers coffee:coffee-script/register --reporter list test
