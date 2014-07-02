@@ -6,5 +6,5 @@ node_js:
   only:
     - master
 
-before_script
+before_script:
   coffee --compile --output lib/ src/*.coffee
