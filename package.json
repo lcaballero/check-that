@@ -4,7 +4,7 @@
   "description": "A small library that provides Google Guava precondition-like argument checks.",
   "main": "index.js",
   "scripts": {
-    "test": "./run-tests"
+    "test": "mocha --compilers coffee:coffee-script/register --reporter list test"
   },
   "author": "Lucas Caballero",
   "license": "Eclipse Public License 1.0",
