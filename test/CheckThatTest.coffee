@@ -1,6 +1,6 @@
 _           = require 'lodash'
 {expect}    = require('chai')
-CheckThat   = require('../lib/CheckThat')()
+CheckThat   = require('../src/CheckThat')()
 
 { exists, notEmpty, checkConstraints, checkThat, checkExists } = CheckThat
 
