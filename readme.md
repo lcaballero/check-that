@@ -1,4 +1,4 @@
-# Introduction [![Build Status](https://travis-ci.org/lcaballero/question-everything.svg?branch=master)](https://travis-ci.org/)
+# Introduction [![Build Status](https://travis-ci.org/lcaballero/CheckThat.svg?branch=master)](https://travis-ci.org/)
 
 This is a little library that is very similar to [Google's Guava checkArgs library][checkArgs].
 
