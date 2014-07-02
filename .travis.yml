@@ -1,3 +1,6 @@
+before_script:
+  - "coffee --compile --output lib/ src/*.coffee"
+
 language: node_js
 node_js:
   - "0.10"
@@ -6,5 +9,3 @@ node_js:
   only:
     - master
 
-before_script:
-  coffee --compile --output lib/ src/*.coffee
