@@ -1,10 +1,17 @@
-# Introduction [![Build Status](https://travis-ci.org/lcaballero/CheckThat.svg?branch=master)](https://travis-ci.org/)
+# Introduction [![Build Status](https://travis-ci.org/lcaballero/check-that.svg?branch=master)](https://travis-ci.org/)
 
 This is a little library that is very similar to [Google's Guava checkArgs library][checkArgs].
 
 Though similar, it is not a direct port of that library's interface.  Mostly
 due to JavaScript's dynamic nature this library leans towards a more functional
 interface.
+
+
+## Installation
+
+```
+%> npm install check-that [--save]
+```
 
 
 ## Usage
