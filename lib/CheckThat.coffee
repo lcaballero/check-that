@@ -15,7 +15,7 @@ _ = require 'lodash'
     ...
 
 ###
-module.exports = ->
+module.exports = do ->
 
   ###
      Predicates that can be used with checks and constraints.
@@ -34,24 +34,36 @@ module.exports = ->
   checkConstraints  = (val, predicates...) ->
     _.all(predicates, (predicate) -> predicate(val))
 
+  resolve = (message, val, predicates...) ->
+    if predicates.length <= 0
+      throw new Error("Cannot check value without any constraints");
+    else if predicates.length is 1
+      throwIt(message, checkConstraints(val, predicates...))
+    else
+      cb = predicates.pop()
+      if checkConstraints(val, predicates...)
+        cb(null, val)
+      else
+        cb(new Error(message), val)
+
   checkThat = (message, val, predicates...) ->
-    throwIt(message, checkConstraints(val, predicates...))
+    resolve(message, val, predicates...)
 
   checkExists = (val, message) ->
     message ?= 'Value must exist (that is not falsy)'
-    throwIt(message, checkConstraints(val, exists))
+    resolve(message, val, exists, elseThrowIt)
 
   checkIndex = (arr, index, message) ->
     message ?= "The index #{index} is out of bounds"
-    throwIt(message, checkConstraings(arr, inBounds(arr, index)))
+    resolve(message, arr, inBounds(arr, index), elseThrowIt)
 
   checkNonEmpty = (str, message) ->
     message ?= "String must be non-empty, and contain a value once trimmed"
-    throwIt(message, checkConstraints(str, nonEmpty))
+    resolve(message, str, nonEmpty, elseThrowIt)
 
   hasKeys = (obj, keys, message) ->
     message ?= "The object should contain the keys specified"
-    throwIt(message, checkConstraints())
+    resolve(message, checkConstraints(), elseThrowIt)
 
   ###
     Helper function which throws an Error with the message provided
@@ -62,6 +74,12 @@ module.exports = ->
       true
     else
       throw new Error(message)
+
+  elseThrowIt = (err) ->
+    if err?
+      throw err
+    else
+      true
 
   return {
     exists            : exists
@@ -74,4 +92,5 @@ module.exports = ->
     # TODO: write tests for these checks
     checkIndex        : checkIndex
     checkNonEmpty     : checkNonEmpty
+    elseThrowIt       : elseThrowIt
   }

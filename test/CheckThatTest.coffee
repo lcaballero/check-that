@@ -1,8 +1,8 @@
 _           = require 'lodash'
 {expect}    = require('chai')
-CheckThat   = require('../lib/CheckThat')()
+CheckThat   = require('../lib/CheckThat')
 
-{ exists, notEmpty, checkConstraints, checkThat, checkExists } = CheckThat
+{ exists, notEmpty, checkConstraints, checkThat, checkExists, elseThrowIt, elseCallback } = CheckThat
 
 FALSY     = [null, undefined]
 WS        = ["\t", "\n", "  "]
@@ -75,27 +75,27 @@ describe "CheckThatTest =>", ->
     describe 'check FALSY =>', ->
       for v in FALSY
         ((val) -> it "'#{dump(val)}' falsy value should throw exception", ->
-          expect(do -> -> checkThat("FALSY", val, exists)).to.throw("FALSY"))(v)
+          expect(-> checkThat("FALSY", val, exists)).to.throw("FALSY"))(v)
 
     describe 'check WS =>', ->
       for v in WS
         ((val) -> it "'#{dump(val)}' ws should throw exception", ->
-          expect(do -> -> checkThat("FALSY", val, exists, notEmpty)).to.throw("FALSY"))(v)
+          expect(-> checkThat("FALSY", val, exists, notEmpty, elseThrowIt)).to.throw("FALSY"))(v)
 
     describe 'check GOOD =>', ->
       for v in THE_GOOD
         ((val) -> it "'#{dump(val)}' should not throw exception", ->
-          expect(checkThat("THE_GOOD", val, exists, notEmpty)).to.be.true)(v)
+          expect(checkThat("THE_GOOD", val, exists, notEmpty, elseThrowIt)).to.be.true)(v)
 
     describe 'check isFunction =>', ->
       for v in [_.isString, _.identity]
         ((val) -> it 'should recognize values as functions', ->
-          expect(checkThat('Is function'), val, _.isFunction))(v)
+          expect(checkThat('Is function', val, _.isFunction)).to.be.true)(v)
 
     describe 'check isString =>', ->
       for v in WS
         ((val) -> it "#{dump(val)} values as a string", ->
-          expect(checkThat('Is String'), val, _.isString))(v)
+          expect(checkThat('Is String', val, _.isString)))(v)
 
 
   describe 'checkExists =>', ->
