@@ -55,35 +55,44 @@ someFunction: (val) ->
     checkExists(val, 'Name must exists')
 ```
 
-`checkExists` is built ontop of `checkThat` and the other predicate functions to produce
-a somewhat simpler interface to the same mechanics.  
+`checkExists` is built on top of `checkThat` and the other predicate functions to produce
+a somewhat simpler interface for the same result.
 
 ## API
 
-#### `checkThat(message, val, predicates..., cb)`
-#### `exists(val)`
-#### `notEmpty(val)`
+##### `checkThat(message, val, predicates..., cb)`
+This is the work horse of the library.  The typical use is shown above.  It accepts
+a message and a value to run through the predicates, if the number of predicates is
+1 then the signature/logic assumes no callback, and checkThat will throw an
+Error (instead of running the callback).  In the case where the number of predicates
+is greater than 1 the last function is considered the callback, and will be called
+and passed an `Error` wrapping the message if the value fails any of the predicates.
+Else the error value to the callback will be `null`.
 
 
-#### `checkConstraints(val, predicates)`
+##### `exists(val)`
+##### `notEmpty(val)`
+
+
+##### `checkConstraints(val, predicates)`
 Returns true if *all* the predicates validate the value, else it returns false, and
 does not throw an Error.
 
-#### `checkExists(value, [message])`
+##### `checkExists(value, [message])`
 If the value *is not* `null` and *is not* `undefined`.  If the value is
 `null` or `undefined` then an `Error` is thrown with the a default message if one is
 not provided.
 
-#### `checkIndex(arr, index, [message])`
+##### `checkIndex(arr, index, [message])`
 Given an any object with a length property this function will validate that index
 is both non-negative and less then the length.  Else it will throw an `Error` with
 the given message or a default message.
 
-#### `checkNonEmpty(aString, [message])`
+##### `checkNonEmpty(aString, [message])`
 Given a string this function will test to see if the string, when trimmed, is non-empty.
 If the string is made of of only whitespace then an `Error` will be thrown.
 
-#### `elseThrowIt(err)`
+##### `elseThrowIt(err)`
 In the code above `elseThrowIt` is shown as the last parameter to `checkThat`.  It
 acts as a callback where no custom callback is provided.  If any of the predicates
 fail to validate the the value (by returning false) then then `checkThat` will

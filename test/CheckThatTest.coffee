@@ -2,7 +2,9 @@ _           = require 'lodash'
 {expect}    = require('chai')
 CheckThat   = require('../lib/CheckThat')
 
-{ exists, notEmpty, checkConstraints, checkThat, checkExists, elseThrowIt, elseCallback } = CheckThat
+{ exists, notEmpty, checkConstraints,
+  checkThat, checkExists, elseThrowIt,
+  elseCallback } = CheckThat
 
 FALSY     = [null, undefined]
 WS        = ["\t", "\n", "  "]
