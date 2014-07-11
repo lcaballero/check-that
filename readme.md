@@ -22,14 +22,30 @@ function tests that the value is not `undefined` and not `null`.  But, if the va
 `null` or `undefined` the check will throw an exception with the last function `elseThrowIt`.
 
 ```coffee
+# In CoffeeScript:
 
-CheckThat = require('CheckThat')()
+CheckThat = require('CheckThat')
 
 { exists, notEmpty, checkThat } = CheckThat
 
 importantFunc: (name) ->
     checkThat('Name must exist and be non-empty', name, exists, notEmpty, elseThrowIt)
     ...
+```
+
+```javascript
+// In JavaScript:
+
+CheckThat = require('CheckThat')
+
+var exists      = CheckThat.exists,
+    notEmpty    = CheckThat.notEmpty,
+    checkThat   = CheckThat.checkThat;
+
+function importantFunc(name) {
+    checkThat('Name must exist and be non-empty', name, exists, notEmpty, elseThrowIt)
+    ...
+}
 ```
 
 The `checkThat` signature is `checkThat(message, val, predicates..., cb)`.  Take note that

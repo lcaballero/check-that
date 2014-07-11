@@ -1,0 +1,19 @@
+#!/bin/bash
+
+head=$(cat <<EOF
+<html>
+<head>
+    <title>Previewing Readme.md</title>
+</head>
+<body>
+
+EOF
+)
+
+body=$(md2html readme.md)
+
+echo $head > readme-preview.html
+echo $body >> readme-preview.html
+echo '</body></html>' >> readme-preview.html
+
+open -a "Google Chrome" readme-preview.html
