@@ -85,19 +85,14 @@ is greater than 1 the last function is considered the callback, and will be call
 and passed an `Error` wrapping the message if the value fails any of the predicates.
 Else the error value to the callback will be `null`.
 
-
-##### `exists(val)`
-##### `notEmpty(val)`
-
-
 ##### `checkConstraints(val, predicates)`
 Returns true if *all* the predicates validate the value, else it returns false, and
 does not throw an Error.
 
 ##### `checkExists(value, [message])`
-If the value *is not* `null` and *is not* `undefined`.  If the value is
-`null` or `undefined` then an `Error` is thrown with the a default message if one is
-not provided.
+If the value is `null` or `undefined` then an `Error` is thrown with the a default
+message if one is not provided. Else no exception is thrown if the value **is not**
+`null` and **is not** `undefined`.
 
 ##### `checkIndex(arr, index, [message])`
 Given an any object with a length property this function will validate that index
@@ -116,6 +111,18 @@ generate an `Error` with a message and pass it to `elseThrowIt`.  In which case
 the error will be non-null and `elseThrowIt` will literally throw the error.  However,
 if the all predicates validate the function then error will be null when passed
 to `elseThrowIt` and it will return `true` without throwing an `Error`.
+
+### Predicates
+
+##### `exists(val)`
+
+##### `notEmpty(val)`
+
+##### `empty(val)`
+
+##### `inBounds(index)`
+
+##### `hashKeys(index)`
 
 
 ## License
